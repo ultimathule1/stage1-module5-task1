@@ -1,9 +1,6 @@
 package com.epam.mjc;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -31,21 +28,31 @@ public class InterfaceCreator {
     }
 
     public Supplier<List<String>> filterCollection(List<String> values) {
-        return (x) -> {
+        return () -> {
             List<String> list = new LinkedList<>();
-            for (String e : values) {
-                if (Character.isUpperCase(e.indexOf(0)) && e.endsWith(".") && e.split(" +").length > 3) {
-                    
+            for (String e : values)
+                if (Character.isUpperCase(e.indexOf(0)) && e.endsWith(".") && (e.split(" +").length > 3)) {
+                    list.add(e);
                 }
-            }
+            return list;
         };
     }
 
     public Function<List<String>, Map<String, Integer>> stringSize() {
-        throw new UnsupportedOperationException("You should implement this method.");
+        return (x) -> {
+            Map<String, Integer> map = new LinkedHashMap<>();
+            for (String e : x) {
+                map.put(e, e.length());
+            }
+            return map;
+        };
     }
 
     public BiFunction<List<Integer>, List<Integer>, List<Integer>> concatList() {
-        throw new UnsupportedOperationException("You should implement this method.");
+        return (x, y) -> {
+            List<Integer> list = new LinkedList<>(x);
+            list.addAll(y);
+            return list;
+        }
     }
 }
