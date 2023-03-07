@@ -53,6 +53,6 @@ public class InterfaceCreator {
             List<Integer> list = new LinkedList<>(x);
             list.addAll(y);
             return list;
-        }
+        };
     }
 }
