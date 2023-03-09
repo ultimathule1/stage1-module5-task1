@@ -8,11 +8,14 @@ import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 public class InterfaceCreator {
+    public static void main(String[] args) {
 
-    public Predicate<List<String>> isValuesStartWithUpperCase() {
+    }
+
+    public static Predicate<List<String>> isValuesStartWithUpperCase() {
         return (x) -> {
             for (String s : x) {
-                if (!Character.isUpperCase(s.indexOf(0))) return false;
+                if (!Character.isUpperCase(s.trim().indexOf(0))) return false;
             }
             return true;
         };
@@ -27,11 +30,11 @@ public class InterfaceCreator {
         };
     }
 
-    public Supplier<List<String>> filterCollection(List<String> values) {
+    public static Supplier<List<String>> filterCollection(List<String> values) {
         return () -> {
             List<String> list = new LinkedList<>();
             for (String e : values)
-                if (Character.isUpperCase(e.indexOf(0)) && e.endsWith(".") && (e.split(" +").length > 3)) {
+                if (e.startsWith(" ") && Character.isUpperCase(e.indexOf(0)) && e.endsWith(".") && (e.split(" +").length > 3)) {
                     list.add(e);
                 }
             return list;
@@ -48,7 +51,7 @@ public class InterfaceCreator {
         };
     }
 
-    public BiFunction<List<Integer>, List<Integer>, List<Integer>> concatList() {
+    public static BiFunction<List<Integer>, List<Integer>, List<Integer>> concatList() {
         return (x, y) -> {
             List<Integer> list = new LinkedList<>(x);
             list.addAll(y);
