@@ -22,10 +22,11 @@ public class InterfaceCreator {
     }
 
     public Consumer<List<Integer>> addEvenValuesAtTheEnd() {
+        List<Integer> list = new LinkedList<>();
         return (x) -> {
-            Iterator<Integer> iter = x.iterator();
-            for (Integer temp; iter.hasNext();) {
-                if ((temp = iter.next()) % 2 == 0) x.add(temp);
+            list.addAll(x);
+            for (Integer e : x) {
+                if (e % 2 == 0) list.add(e);
             }
         };
     }
